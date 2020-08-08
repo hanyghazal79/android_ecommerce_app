@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".NewProductActivity">
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/new_product_app_bar"
+        >
+        <Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New product"
+                    android:layout_centerVertical="true"
+                    android:textColor="@android:color/white"
+                    android:textAppearance="?android:textAppearanceLarge"
+                    />
+                <com.rey.material.widget.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/new_product_fab_save"
+                    app:fab_iconSrc="@drawable/ic_action_save"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@color/colorPrimary"
+                    />
+            </RelativeLayout>
+        </Toolbar>
+    </android.support.design.widget.AppBarLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="6"
+    >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:id="@+id/new_product_image_view"
+        android:src="@drawable/ic_launcher_foreground"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:background="@drawable/stroke_design"
+        />
+    <com.rey.material.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/new_product_fab_select_image"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="215dp"
+        android:layout_marginRight="27dp"
+        app:fab_iconSrc="@drawable/select_product_image"
+        android:background="@android:color/white"
+        />
+</RelativeLayout>
+    <AutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"
+        android:id="@+id/new_product_auto_text_category"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:background="@drawable/stroke_design"
+        android:hint="Product category"
+        android:textSize="24dp"
+        android:gravity="center"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+
+        android:id="@+id/new_product_edit_text_name"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/stroke_design"
+        android:hint="Product name"
+        android:textSize="24dp"
+        android:gravity="center"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+
+        android:id="@+id/new_product_edit_text_price"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:background="@drawable/stroke_design"
+        android:hint="Price"
+        android:textSize="24dp"
+        android:gravity="center"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+
+        android:id="@+id/new_product_edit_text_description"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:background="@drawable/stroke_design"
+        android:hint="Description"
+        android:textSize="24dp"
+        android:gravity="center"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+
+        android:id="@+id/new_product_button_save"
+        android:text="Save"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:background="@drawable/solid_design"
+        android:textColor="@android:color/white"
+        android:textSize="24dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        />
+</LinearLayout>

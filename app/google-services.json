@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "293756844877",
+    "firebase_url": "https://myecommerceapp-ce87d.firebaseio.com",
+    "project_id": "myecommerceapp-ce87d",
+    "storage_bucket": "myecommerceapp-ce87d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:293756844877:android:8ff17386e9a3cb66",
+        "android_client_info": {
+          "package_name": "com.hanyghazal.myecommerceapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "293756844877-n1e6q66vsttdnlktto44co0cgfseth2s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hanyghazal.myecommerceapp",
+            "certificate_hash": "89438b94a61eba551ff75a72059d731731ce7f8e"
+          }
+        },
+        {
+          "client_id": "293756844877-64vns317hrnja9bq69s1vpme94gv3n4v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBf1XjnGi1UYgdb-rEI3tMlcCobvd_Noio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "293756844877-64vns317hrnja9bq69s1vpme94gv3n4v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

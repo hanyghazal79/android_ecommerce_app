@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="20dp"
+    tools:context=".NewCategoryActivity">
+<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:src="@drawable/headphoness"
+    android:layout_gravity="center"
+    android:padding="50dp"
+    android:cropToPadding="true"
+    android:id="@+id/new_category_image_view"
+    />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/new_cat_button_choose_image"
+        android:background="@drawable/solid_design"
+        android:text="Choose an image"
+        android:textColor="@android:color/white"
+        android:layout_gravity="center"
+        android:textAllCaps="false"
+        />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/stroke_design"
+            android:hint="Category name"
+            android:layout_marginTop="10dp"
+            android:id="@+id/new_cat_edtxt_category_name"
+            android:layout_gravity="center"
+            />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/solid_design"
+        android:text="Save"
+        android:textColor="@android:color/white"
+        android:id="@+id/new_cat_button_save"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:textAllCaps="false"
+        />
+</LinearLayout>

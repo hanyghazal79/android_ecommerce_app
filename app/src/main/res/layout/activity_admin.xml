@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/admin"
+    tools:context=".AdminActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            >
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:id="@+id/admin_button_show_categories"
+                android:text="Product categories"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:background="@drawable/solid_design"
+                android:textColor="@android:color/white"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/admin_text_view_add_category"
+                android:text="Add a new category"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="bottom"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            >
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:id="@+id/admin_button_show_products"
+                android:text="Products"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:background="@drawable/solid_design"
+                android:textColor="@android:color/white"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:id="@+id/admin_text_view_add_product"
+                android:text="Add a new product"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="bottom"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            >
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:id="@+id/admin_button_show_accounts"
+                android:text="Manage accounts"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:background="@drawable/solid_design"
+                android:textColor="@android:color/white"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:id="@+id/admin_text_view_add_account"
+                android:text="Add a new account"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="bottom"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
