@@ -18,6 +18,7 @@ public class Commons {
 
     public static ArrayList<String> categoryNames = new ArrayList<>();
     public static ArrayList<String> categoryImageNames = new ArrayList<>();
+
     public static final String ADMINS_DB = "ADMINS";
     public static final String USERS_DB = "USERS";
     public static final String CARTS_DB = "CARTS";

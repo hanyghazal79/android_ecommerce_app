@@ -18,6 +18,7 @@ public class CartViewHolder extends RecyclerView.ViewHolder{
     public CartViewHolder(@NonNull View itemView) {
         super(itemView);
         identifyLayout();
+
     }
 
     private void identifyLayout() {

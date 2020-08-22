@@ -40,7 +40,6 @@ public class CartDetailsActivity extends AppCompatActivity {
     private double cartTotal = 0.0;
     private int initialQty;
     private int updatedQty;
-    private CartViewHolder holder;
 
 
     @Override
@@ -55,6 +54,8 @@ public class CartDetailsActivity extends AppCompatActivity {
         initUI();
         viewCartItems();
     }
+
+
 
     private void viewCartItems() {
         dbRef = FirebaseDatabase.getInstance()
@@ -77,7 +78,7 @@ public class CartDetailsActivity extends AppCompatActivity {
                         initialQty = model.getQuantity();
                         updatedQty = initialQty;
                         initialItemTotal = calculateItemTotal(price, initialQty);
-                        //cartTotal = calculateCartTotal(options, 0);
+//                        cartTotal = calculateCartTotal(options, 0);
                         cartTotal += initialItemTotal;
                         holder.txtItemTotal.setText(initialItemTotal + Commons.currencySymbol);
                         txtCartTotal.setText("TOTAL = "+String.valueOf(cartTotal)+Commons.currencySymbol);
@@ -85,56 +86,13 @@ public class CartDetailsActivity extends AppCompatActivity {
                         holder.btnIncrease.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                updatedQty += 1;
+                                updatedQty = initialQty + 1;
                                 holder.txtQty.setText(String.valueOf(updatedQty));
                                 updatedItemTotal = calculateItemTotal(price, updatedQty);
-                                holder.txtItemTotal.setText(String.valueOf(updatedItemTotal));
-                                //int qtyUpdate = updatedQty - initialQty;
-                                //double itemUpdate = updatedItemTotal - initialItemTotal;
-                                //cartTotal = calculateCartTotal(options, qtyUpdate);
-                                //cartTotal += itemUpdate;
-                                //txtCartTotal.setText("TOTAL = "+String.valueOf(cartTotal)+Commons.currencySymbol);
-                            }
-                        });
-                        holder.btnDecrease.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                initialQty = Integer.valueOf(holder.txtQty.getText().toString());
-                                if(initialQty == 0){
+                                cartTotal += updatedItemTotal - initialItemTotal;
+                                holder.txtItemTotal.setText(updatedItemTotal + Commons.currencySymbol);
 
-                                    Toast.makeText(getApplicationContext(), "The quantity cannot be a negative value !..", Toast.LENGTH_SHORT).show();
-                                }
-                                else if(initialQty > 0){
-                                    updatedQty = initialQty;
-                                    updatedQty -= 1;
-                                    holder.txtQty.setText(String.valueOf(updatedQty));
-                                    updatedItemTotal = calculateItemTotal(price, updatedQty);
-                                    holder.txtItemTotal.setText(String.valueOf(updatedItemTotal));
-                                    int qtyUpdate = updatedQty - initialQty;
-                                    cartTotal = calculateCartTotal(options, qtyUpdate);
-                                    txtCartTotal.setText("TOTAL = "+String.valueOf(cartTotal)+Commons.currencySymbol);
-                                }
-
-                            }
-                        });
-                        holder.txtItemTotal.addTextChangedListener(new TextWatcher() {
-                            @Override
-                            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                            }
-
-                            @Override
-                            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                            updatedItemTotal = Double.valueOf(holder.txtItemTotal.getText().toString());
-                            double itemUpdate = updatedItemTotal - initialItemTotal;
-                            cartTotal += itemUpdate;
-                            txtCartTotal.setText("TOTAL = "+String.valueOf(cartTotal)+Commons.currencySymbol);
-
-                            }
-
-                            @Override
-                            public void afterTextChanged(Editable s) {
+                                txtCartTotal.setText("TOTAL = "+String.valueOf(cartTotal)+Commons.currencySymbol);
 
                             }
                         });
@@ -148,17 +106,20 @@ public class CartDetailsActivity extends AppCompatActivity {
                         CartViewHolder holder = new CartViewHolder(view);
                         return holder;
                     }
+
                 };
+
         recyclerViewCart.setAdapter(adapter);
         adapter.startListening();
+
     }
 
     private void updateCartTotal(int qty) {
 
     }
 
-    private double calculateCartTotal(FirebaseRecyclerOptions<Cart> options, int qtyUpdate) {
-        double cartTotal = 0.0;
+    private double calculateCartTotal(FirebaseRecyclerOptions<Cart> options, int qtyUpdate, double cartTotal) {
+//        double cartTotal = 0.0;
         ObservableSnapshotArray<Cart> snapshots = options.getSnapshots();
         for(int i = 0; i<snapshots.size(); i++){
             double price = Double.parseDouble(snapshots.get(i).getProduct().getProductPrice());

@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         txtAdmin.setOnClickListener(this);
         txtNotAdmin.setOnClickListener(this);
 
-//        Paper.init(this);
+        Paper.init(this);
     }
 
     @Override
@@ -59,18 +59,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             login(email, password);
         }
-//        else if(v.getId() == R.id.login_txtv_admin){
-//            txtAdmin.setVisibility(View.INVISIBLE);
-//            txtNotAdmin.setVisibility(View.VISIBLE);
-//            btnLogin.setText("Admin login");
-//            Commons.dbName = Commons.ADMINS_DB;
-//        }
-//        else if(v.getId() == R.id.login_txtv_not_admin){
-//            txtAdmin.setVisibility(View.VISIBLE);
-//            txtNotAdmin.setVisibility(View.INVISIBLE);
-//            btnLogin.setText("Login");
-//            Commons.dbName = Commons.USERS_DB;
-//        }
+        else if(v.getId() == R.id.login_txtv_admin){
+            txtAdmin.setVisibility(View.INVISIBLE);
+            txtNotAdmin.setVisibility(View.VISIBLE);
+            btnLogin.setText("Admin login");
+            Commons.dbName = Commons.ADMINS_DB;
+        }
+        else if(v.getId() == R.id.login_txtv_not_admin){
+            txtAdmin.setVisibility(View.VISIBLE);
+            txtNotAdmin.setVisibility(View.INVISIBLE);
+            btnLogin.setText("Login");
+            Commons.dbName = Commons.USERS_DB;
+        }
     }
 
     private void login(final String eMail, final String password) {
@@ -94,6 +94,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             Toast.makeText(LoginActivity.this, "You are logged in successfully", Toast.LENGTH_LONG).show();
                             Commons.currentUser = snapshot.getValue(User.class);
                             Commons.currentUserKey = snapshot.getKey();
+                            if(checkBoxRemember.isChecked()){
+                                Paper.book().write(Commons.DB_KEY, Commons.dbName);
+                                Paper.book().write(Commons.USER_NAME_KEY, Commons.currentUser.getUserName());
+                                Paper.book().write(Commons.E_MAIL_KEY, Commons.currentUser.geteMail());
+                                Paper.book().write(Commons.PASS_WORD_KEY, Commons.currentUser.getPassword());
+                                Toast.makeText(LoginActivity.this, "Saved login data!..", Toast.LENGTH_SHORT).show();
+                            }
+
                             Intent intent = new Intent(LoginActivity.this, CartDetailsActivity.class);
                             intent.putExtra("Email", rEmail);
                             startActivity(intent);

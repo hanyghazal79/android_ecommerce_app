@@ -41,8 +41,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mainBtnJoinNow.setOnClickListener(this);
         mainBtnLogin.setOnClickListener(this);
         progressDialog = new ProgressDialog(this);
-//        Paper.init(this);
-//        rememberUser();
+        Paper.init(this);
+        rememberUser();
 //        Paper.book().destroy();
     }
 
@@ -50,7 +50,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         retrievedUserName = Paper.book().read(Commons.USER_NAME_KEY);
         String eMail = Paper.book().read(Commons.E_MAIL_KEY);
         String password = Paper.book().read(Commons.PASS_WORD_KEY);
+
         Commons.dbName = Paper.book().read(Commons.DB_KEY);
+
         if(eMail != null && password != null){
             if(!TextUtils.isEmpty(eMail) && !TextUtils.isEmpty(password)){
                 login(eMail, password);
@@ -71,20 +73,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(!dataSnapshot.exists()){
                     progressDialog.dismiss();
-                }
-                else {
+                } else if(dataSnapshot.exists()){
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                        
                         String retrievedEmail = snapshot.child("eMail").getValue(String.class);
                         String retrievedPassword = snapshot.child("password").getValue(String.class);
+                        Commons.currentUserKey = snapshot.getKey();
+
                         if(eMail.equals(retrievedEmail) && password.equals(retrievedPassword)){
-                            Toast.makeText(MainActivity.this, "Successful login.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Successful login.", Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
-                            Intent intent = new Intent(MainActivity.this, AdminActivity.class);
+                            Intent intent = new Intent(MainActivity.this, CartDetailsActivity.class);
                             startActivity(intent);
-                        }
-                        else {
+                        } else {
                             progressDialog.dismiss();
-                            Toast.makeText(MainActivity.this, "Failed login due to invalid email or password.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Failed login due to invalid email or password.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, "Failed login due to invalid email or password.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, "Failed login due to invalid email or password.", Toast.LENGTH_LONG).show();
+
                         }
                     }
                 }
