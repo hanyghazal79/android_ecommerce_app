@@ -8,7 +8,7 @@
     android:layout_margin="5dp"
     android:orientation="vertical"
     tools:context=".ProductDetailsActivity">
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Toolbar
@@ -37,7 +37,7 @@
                     />
             </RelativeLayout>
         </Toolbar>
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"

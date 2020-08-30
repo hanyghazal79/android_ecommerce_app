@@ -2,11 +2,9 @@ package com.hanyghazal.myecommerceapp;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Environment;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -18,11 +16,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 import io.paperdb.Paper;
 
@@ -87,10 +80,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             startActivity(intent);
                         } else {
                             progressDialog.dismiss();
-                            Toast.makeText(MainActivity.this, "Failed login due to invalid email or password.", Toast.LENGTH_LONG).show();
-                            Toast.makeText(MainActivity.this, "Failed login due to invalid email or password.", Toast.LENGTH_LONG).show();
-                            Toast.makeText(MainActivity.this, "Failed login due to invalid email or password.", Toast.LENGTH_LONG).show();
-
                         }
                     }
                 }

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".CategoryProductsActivity">
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Toolbar
@@ -40,8 +40,8 @@
                     />
             </RelativeLayout>
         </Toolbar>
-    </android.support.design.widget.AppBarLayout>
-    <android.support.v7.widget.RecyclerView
+    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/category_products_recyclerview"

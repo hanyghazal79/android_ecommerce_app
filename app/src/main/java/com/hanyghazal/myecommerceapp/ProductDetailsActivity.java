@@ -1,9 +1,8 @@
 package com.hanyghazal.myecommerceapp;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,9 +20,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 public class ProductDetailsActivity extends AppCompatActivity implements View.OnClickListener {
     ImageView imageViewProduct;
@@ -105,7 +101,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements View.On
 //       }
         if(v.getId() == R.id.btn_add_to_cart){
 
-           addToCartDB(getCartInfo());
+           addToCartDB(getCart());
 
        }
     }
@@ -124,11 +120,11 @@ public class ProductDetailsActivity extends AppCompatActivity implements View.On
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(ProductDetailsActivity.this, "Failed product addition to cart", Toast.LENGTH_SHORT).show();
-                Log.i("CART===>", "onFailure: "+e.toString());
+                Log.i("CART ===>", "onFailure: "+e.toString());
             }
         });
     }
-    public Cart getCartInfo(){
+    public Cart getCart(){
 //        Calendar calendar = Calendar.getInstance();
 //        SimpleDateFormat timeFormat = new SimpleDateFormat("HHmmss");
 //        String currentSaveTime = timeFormat.format(calendar.getTime());
@@ -136,7 +132,10 @@ public class ProductDetailsActivity extends AppCompatActivity implements View.On
 //        SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy");
 //        String currentSaveDate = dateFormat.format(calendar.getTime());
 //        cartRandomKey = currentSaveDate+currentSaveTime;
-        Cart cart = new Cart(Commons.currentUserKey, Commons.currentProduct, 1);
+        double price = Double.parseDouble(Commons.currentProduct.getProductPrice());
+        int qty = 1;
+        double itemTotal = price * qty;
+        Cart cart = new Cart(Commons.currentUserKey, Commons.currentProduct, qty, itemTotal);
         return cart;
     }
 

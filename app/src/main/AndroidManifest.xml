@@ -20,6 +20,7 @@
         <activity android:name=".NewProductActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".HomeActivity" />
+        <activity android:name=".TestActivity"/>
         <activity
             android:name=".NewCategoryActivity"
             android:theme="@style/Theme.AppCompat.Dialog" />

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".CartDetailsActivity">
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Toolbar
@@ -16,10 +16,10 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <TextView
+                <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cart"
+                    android:src="@drawable/ic_action_back"
                     android:textAppearance="?android:textAppearanceLarge"
                     android:textColor="@android:color/white"
                     android:layout_centerVertical="true"
@@ -30,7 +30,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/prod_cart_button_close"
                     android:layout_alignParentEnd="true"
-                    android:text="Close"
+                    android:text="X"
                     android:layout_centerVertical="true"
                     android:background="@color/colorPrimary"
                     android:textAppearance="?android:textAppearanceLarge"
@@ -39,10 +39,10 @@
                     />
             </RelativeLayout>
         </Toolbar>
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="9"
