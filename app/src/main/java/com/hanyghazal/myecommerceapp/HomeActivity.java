@@ -12,6 +12,8 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.opengl.Visibility;
 import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,6 +36,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
+import io.paperdb.Paper;
+
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
@@ -44,12 +48,20 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     CircularImageView imageViewProfile;
+    View navAdmin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        initUI();
+        displayCategories();
+
+    }
+
+    private void initUI() {
+        Paper.init(this);
         drawerLayout = findViewById(R.id.drawer_layout);
         toolbar = findViewById(R.id.toolbar_home);
         toolbar.setTitle("Home");
@@ -83,12 +95,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        displayCategories();
-//        //=== for product display
-//        recyclerViewCatProducts = findViewById(R.id.category_products_recyclerview);
-//        recyclerViewCatProducts.setHasFixedSize(true);
-//        //layoutManager = new LinearLayoutManager(this);
-//        recyclerViewCatProducts.setLayoutManager(layoutManager);
+        // ===
+
+        navAdmin = findViewById(R.id.nav_admin);
+
+
     }
 
     @Override
@@ -121,14 +132,19 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        if(menuItem.getItemId() == R.id.nav_admin){
+            startActivity(new Intent(HomeActivity.this, AdminActivity.class));
+        }
         if(menuItem.getItemId() == R.id.nav_cart){
-
+              displayCart();
         }
         else if(menuItem.getItemId() == R.id.nav_orders){
 
         }
         else if (menuItem.getItemId() == R.id.nav_categories) {
-            displayCategories();
+//            displayCategories();
+            startActivity(new Intent(HomeActivity.this, CategoriesActivity.class));
+
         }
         else if (menuItem.getItemId() == R.id.nav_products) {
             startActivity(new Intent(HomeActivity.this, CategoryProductsActivity.class));
@@ -139,7 +155,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
         else if (menuItem.getItemId() == R.id.nav_logout) {
 
-//          Paper.book().destroy();
+          Paper.book().destroy();
             Intent intent = new Intent(HomeActivity.this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
@@ -148,7 +164,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
-        //============================
+
+    private void displayCart() {
+        startActivity(new Intent(HomeActivity.this, CartDetailsActivity.class));
+    }
+    //============================
 
     private void displaySettings() {
         Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
@@ -170,8 +190,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     protected void onStart() {
         super.onStart();
         //displayCategories(); // invoked here if we want to display on starting activity
+
     }
     public void displayCategories(){
+//        startActivity(new Intent(HomeActivity.this, CategoriesActivity.class));
         FirebaseRecyclerOptions<Category> options =
                 new FirebaseRecyclerOptions.Builder<Category>()
                         .setQuery(dbRef, Category.class)
@@ -188,8 +210,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                             public void onClick(View v) {
                                 //Commons.selectedCategory = holder.textViewCategoryName.getText().toString();
                                 Commons.selectedCategory = model.getCategoryName();
+                                Intent intent = new Intent(HomeActivity.this, CategoryProductsActivity.class);
+                                intent.putExtra(Commons.selectedCategory, Commons.selectedCategory);
+                                startActivity(intent);
 
-                                startActivity(new Intent(HomeActivity.this, CategoryProductsActivity.class));
                             }
                         });
                     }

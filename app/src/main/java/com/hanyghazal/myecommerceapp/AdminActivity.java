@@ -9,20 +9,26 @@ import android.widget.Button;
 import io.paperdb.Paper;
 
 public class AdminActivity extends AppCompatActivity implements View.OnClickListener {
-    Button btnShowCategories;
+    Button btnShowCategories, btnShowProducts;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
         Paper.init(this);
         btnShowCategories = findViewById(R.id.admin_button_show_categories);
+        btnShowProducts = findViewById(R.id.admin_button_show_products);
+
         btnShowCategories.setOnClickListener(this);
+        btnShowProducts.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.admin_button_show_categories){
             Intent intent = new Intent(AdminActivity.this, CategoriesActivity.class);
+            startActivity(intent);
+        }else if(v.getId() == R.id.admin_button_show_products){
+            Intent intent = new Intent(AdminActivity.this, ProductsActivity.class);
             startActivity(intent);
         }
     }

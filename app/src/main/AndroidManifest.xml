@@ -14,19 +14,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CartDetailsActivity"></activity>
+        <activity android:name=".ProductsActivity"></activity>
+        <activity android:name=".OrderSummaryActivity" />
+        <activity
+            android:name=".CategoriesActivity"
+            android:label="Categories"
+            android:theme="@style/CustomTheme" />
+        <activity android:name=".CartDetailsActivity" />
         <activity android:name=".ProductDetailsActivity" />
         <activity android:name=".CategoryProductsActivity" />
         <activity android:name=".NewProductActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".TestActivity"/>
-        <activity
-            android:name=".NewCategoryActivity"
-            android:theme="@style/Theme.AppCompat.Dialog" />
-        <activity
-            android:name=".CategoriesActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+        <activity android:name=".NewCategoryActivity" />
         <activity android:name=".AdminActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />

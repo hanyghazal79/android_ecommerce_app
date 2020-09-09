@@ -10,9 +10,9 @@ import android.widget.TextView;
 import com.hanyghazal.myecommerceapp.R;
 
 public class CartViewHolder extends RecyclerView.ViewHolder{
-    public ImageView imageViewProduct;
-    public TextView txtProdName, txtPrice, txtQty, txtItemTotal;
-    public Button btnIncrease, btnDecrease;
+    ImageView imageViewProduct;
+    TextView txtProdName, txtPrice, txtQty, txtItemTotal;
+    Button btnIncrease, btnDecrease;
 
     public CartViewHolder(@NonNull View itemView) {
         super(itemView);

@@ -4,24 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    tools:context=".CategoriesActivity"
+    tools:context=".ProductsActivity"
 
     <item
-        android:title="Edit this category"
+        android:title="Edit this product"
         app:showAsAction="always"
-        android:id="@+id/action_edit_category"
+        android:id="@+id/action_edit_product"
         android:icon="@android:drawable/ic_menu_edit"
         />
     <item
-        android:title="Add a category"
+        android:title="Add a product"
         app:showAsAction="always"
-        android:id="@+id/action_remove_category"
+        android:id="@+id/action_remove_product"
         android:icon="@android:drawable/ic_menu_delete"
         />
     <item
-        android:title="Add a category"
+        android:title="Add a product"
         app:showAsAction="always"
-        android:id="@+id/action_add_category"
+        android:id="@+id/action_add_product"
         android:icon="@android:drawable/ic_menu_add"
         />
 </menu>

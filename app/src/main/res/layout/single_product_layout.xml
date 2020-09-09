@@ -16,6 +16,7 @@
         android:layout_height="150dp"
         android:id="@+id/single_product_image_view"
         android:src="@drawable/ic_launcher_foreground"
+        android:scaleType="centerCrop"
         />
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,6 +40,37 @@
             android:gravity="center"
             android:id="@+id/single_product_text_view_price"
             android:textAppearance="?android:textAppearanceMedium"
+
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        >
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_outline_favorite_24"
+            android:id="@+id/single_product_wishlist_icon"
+            android:tint="@color/colorPrimaryDark"
+            android:paddingLeft="24dp"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:id="@+id/single_product_cart_icon"
+            android:paddingRight="24dp"
+            android:tint="@color/colorPrimaryDark"
+            android:src="@drawable/ic_baseline_add_shopping_cart_24"
 
             />
     </LinearLayout>

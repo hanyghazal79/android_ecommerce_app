@@ -49,11 +49,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(eMail != null && password != null){
             if(!TextUtils.isEmpty(eMail) && !TextUtils.isEmpty(password)){
                 login(eMail, password);
+                Toast.makeText(this, eMail, Toast.LENGTH_LONG).show();
             }
         }
     }
 
-    private void login(final String eMail, final String password) {
+    private void login(final String email, final String password) {
         progressDialog.setTitle("Welcome back "+retrievedUserName);
         progressDialog.setMessage("Please wait while going to the home page.");
         progressDialog.setCanceledOnTouchOutside(false);
@@ -64,33 +65,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(!dataSnapshot.exists()){
-                    progressDialog.dismiss();
-                } else if(dataSnapshot.exists()){
+                if(dataSnapshot.exists()){
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                        
-                        String retrievedEmail = snapshot.child("eMail").getValue(String.class);
-                        String retrievedPassword = snapshot.child("password").getValue(String.class);
-                        Commons.currentUserKey = snapshot.getKey();
+                        String rName = snapshot.child("userName").getValue(String.class);
+                        String rEmail = snapshot.child("email").getValue(String.class);
+                        String rPassword = snapshot.child("password").getValue(String.class);
+                        String rPhone= snapshot.child("phone").getValue(String.class);
+                        String rAddress= snapshot.child("address").getValue(String.class);
+                        if(email.equals(rEmail) && password.equals(rPassword)){
 
-                        if(eMail.equals(retrievedEmail) && password.equals(retrievedPassword)){
-                            Toast.makeText(MainActivity.this, "Successful login.", Toast.LENGTH_LONG).show();
-                            progressDialog.dismiss();
-                            Intent intent = new Intent(MainActivity.this, CartDetailsActivity.class);
-                            startActivity(intent);
-                        } else {
-                            progressDialog.dismiss();
+                            Commons.currentUser = new User(rName, rEmail, rPassword, rPhone, rAddress);
+                            Commons.currentUserKey = snapshot.getKey();
+
                         }
                     }
                 }
-
+                Toast.makeText(MainActivity.this, "You are logged in successfully", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(MainActivity.this, HomeActivity.class));
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+                Toast.makeText(MainActivity.this, databaseError.toString(), Toast.LENGTH_LONG).show();
+
             }
         });
+
+
     }
 
     @Override

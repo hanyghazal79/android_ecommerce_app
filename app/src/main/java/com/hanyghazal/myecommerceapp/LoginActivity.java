@@ -64,6 +64,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             txtNotAdmin.setVisibility(View.VISIBLE);
             btnLogin.setText("Admin login");
             Commons.dbName = Commons.ADMINS_DB;
+            Commons.isAdmin = true;
         }
         else if(v.getId() == R.id.login_txtv_not_admin){
             txtAdmin.setVisibility(View.VISIBLE);
@@ -73,11 +74,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    private void login(final String eMail, final String password) {
+    private void login(final String email, final String password) {
         progressDialog.setTitle("Loging in..");
         progressDialog.setMessage("Please wait while checking your data");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+
+        dbRef = FirebaseDatabase.getInstance().getReference(Commons.dbName);
 
         dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -85,35 +88,44 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if(dataSnapshot.exists()){
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                         String rName = snapshot.child("userName").getValue(String.class);
-                        String rEmail = snapshot.child("eMail").getValue(String.class);
+                        String rEmail = snapshot.child("email").getValue(String.class);
                         String rPassword = snapshot.child("password").getValue(String.class);
                         String rPhone= snapshot.child("phone").getValue(String.class);
+                        String rAddress= snapshot.child("address").getValue(String.class);
+                        if(email.equals(rEmail) && password.equals(rPassword)){
 
-                        if(eMail.equals(rEmail) && password.equals(rPassword)){
-                            progressDialog.dismiss();
-                            Toast.makeText(LoginActivity.this, "You are logged in successfully", Toast.LENGTH_LONG).show();
-                            Commons.currentUser = snapshot.getValue(User.class);
+                            Commons.currentUser = new User(rName, rEmail, rPassword, rPhone, rAddress);
                             Commons.currentUserKey = snapshot.getKey();
+
                             if(checkBoxRemember.isChecked()){
+                                Paper.book().write(Commons.ADMIN_STATUS, Commons.isAdmin);
                                 Paper.book().write(Commons.DB_KEY, Commons.dbName);
                                 Paper.book().write(Commons.USER_NAME_KEY, Commons.currentUser.getUserName());
-                                Paper.book().write(Commons.E_MAIL_KEY, Commons.currentUser.geteMail());
+                                Paper.book().write(Commons.E_MAIL_KEY, Commons.currentUser.getEmail());
                                 Paper.book().write(Commons.PASS_WORD_KEY, Commons.currentUser.getPassword());
                                 Toast.makeText(LoginActivity.this, "Saved login data!..", Toast.LENGTH_SHORT).show();
                             }
 
-                            Intent intent = new Intent(LoginActivity.this, CartDetailsActivity.class);
-                            intent.putExtra("Email", rEmail);
+                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                            intent.putExtra("Email", Commons.currentUser.getEmail());
                             startActivity(intent);
+                            Toast.makeText(LoginActivity.this, "You are logged in successfully", Toast.LENGTH_LONG).show();
+
                         }
                     }
                 }
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(LoginActivity.this, "ERROR: "+databaseError.toString(), Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(LoginActivity.this, databaseError.toString(), Toast.LENGTH_LONG).show();
+
             }
         });
+
+
+
     }
 }

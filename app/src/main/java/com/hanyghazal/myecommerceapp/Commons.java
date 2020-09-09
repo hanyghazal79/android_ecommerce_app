@@ -10,12 +10,13 @@ public class Commons {
     public static final String PRODUCTS_DB = "PRODUCTS";
     public static final String PRODUCT_NAME_KEY = "PRODUCT_NAME_KEY";
     public static final String PRODUCT_KEY = "PRODUCT_KEY";
-
+    public static final String ADMIN_STATUS = "Admin Status";
+    public static boolean isAdmin;
     public static String dbName;
     public static User currentUser;
     public static Product currentProduct;
     public static String currentUserKey;
-
+    public static  String orderShipping;
     public static ArrayList<String> categoryNames = new ArrayList<>();
     public static ArrayList<String> categoryImageNames = new ArrayList<>();
 

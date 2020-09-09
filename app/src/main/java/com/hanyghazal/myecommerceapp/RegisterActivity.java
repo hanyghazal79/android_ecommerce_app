@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
-    EditText regEdtxtName, regEdtxtEmail, regEdtxtPassword, regEdtxtConfirmPassword, regEdtxtPhone;
+    EditText regEdtxtName, regEdtxtEmail, regEdtxtPassword, regEdtxtConfirmPassword, regEdtxtPhone, regEdtxtAddress;
     Button regBtnRegister;
     DatabaseReference dbRef;
     ProgressDialog progressDialog;
@@ -38,6 +38,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         regEdtxtPassword = findViewById(R.id.register_edtxt_password);
         regEdtxtConfirmPassword = findViewById(R.id.register_edtxt_confirm_password);
         regEdtxtPhone = findViewById(R.id.register_edtxt_phone);
+        regEdtxtAddress = findViewById(R.id.register_edtxt_address);
         regBtnRegister = findViewById(R.id.register_btn_register);
         progressDialog = new ProgressDialog(this);
         txtvRegisterAsAdmin = findViewById(R.id.register_txtv_as_admin);
@@ -65,7 +66,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         final String email = String.valueOf(regEdtxtEmail.getText());
         String password = String.valueOf(regEdtxtPassword.getText());
         String phone = String.valueOf(regEdtxtPhone.getText());
-
+        String address = String.valueOf(regEdtxtAddress.getText());
         if (TextUtils.isEmpty(name)) {
             Toast.makeText(this, "Please enter a user name", Toast.LENGTH_SHORT).show();
 
@@ -78,13 +79,16 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         } else if (TextUtils.isEmpty(phone)) {
             Toast.makeText(this, "Please enter your phone number", Toast.LENGTH_SHORT).show();
 
+        } else if (TextUtils.isEmpty(address)) {
+            Toast.makeText(this, "Please enter your address", Toast.LENGTH_SHORT).show();
+
         } else {
             progressDialog.setTitle("Creating an account..");
             progressDialog.setMessage("Please wait for while we are checking the credentials.");
             progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.show();
 
-            final User user = new User(name, email, password, phone);
+            final User user = new User(name, email, password, phone, address);
 
             dbRef = FirebaseDatabase.getInstance().getReference(Commons.dbName);
             dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -95,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     }
                     else {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            String emailInfo = snapshot.child("eMail").getValue(String.class);
+                            String emailInfo = snapshot.child("email").getValue(String.class);
                             if (email.equals(emailInfo)) {
                                 progressDialog.dismiss();
                                 Toast.makeText(RegisterActivity.this, "This Email already exists.", Toast.LENGTH_SHORT).show();

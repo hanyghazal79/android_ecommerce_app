@@ -7,6 +7,8 @@ public class Product {
     private String productPrice;
     private String productDescription;
     private String productImageDownloadUri;
+    private String productSellerName;
+    private String productShippingValue;
 
     public Product() {
     }

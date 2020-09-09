@@ -5,13 +5,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_margin="20dp"
+    android:padding="20dp"
     tools:context=".NewCategoryActivity">
 <ImageView
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="400dp"
     android:src="@drawable/headphoness"
     android:layout_gravity="center"
     android:padding="50dp"
+    android:layout_marginTop="25dp"
     android:cropToPadding="true"
     android:id="@+id/new_category_image_view"
     />
