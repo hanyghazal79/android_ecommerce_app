@@ -19,30 +19,65 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_action_back"
-                    android:foreground="@android:color/transparent"
+                    android:src="@drawable/ic_baseline_arrow_back_24"
+                    android:id="@+id/image_button_back_from_cart"
                     android:background="@color/colorPrimaryDark"
-                    android:textAppearance="?android:textAppearanceLarge"
                     android:layout_centerVertical="true"
-                    android:textStyle="bold"
+                    android:tint="@android:color/white"
                     />
-                <Button
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/prod_cart_button_close"
-                    android:layout_alignParentEnd="true"
-                    android:text="X"
-                    android:layout_centerVertical="true"
-                    android:background="@color/colorPrimary"
-                    android:textAppearance="?android:textAppearanceLarge"
+                    android:text="Cart"
                     android:textColor="@android:color/white"
-                    android:textStyle="bold"
+                    android:layout_toRightOf="@id/image_button_back_from_cart"
+                    android:layout_centerVertical="true"
+                    android:textAppearance="?android:textAppearanceLarge"
+                    android:layout_marginLeft="5dp"
+                    android:textStyle="italic"
+                    />
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/cart_image_button_close"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_baseline_close_24"
+                    android:tint="@android:color/white"
+                    android:background="@color/colorPrimaryDark"
+                    />
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/image_button_edit_cart"
+                    android:src="@android:drawable/ic_menu_edit"
+                    android:layout_toLeftOf="@id/cart_image_button_close"
+                    android:background="@color/colorPrimaryDark"
+                    android:tint="@android:color/white"
+                    android:layout_marginRight="5dp"
+                    />
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/image_button_remove_cart"
+                    android:src="@android:drawable/ic_menu_delete"
+                    android:layout_toLeftOf="@id/image_button_edit_cart"
+                    android:background="@color/colorPrimaryDark"
+                    android:tint="@android:color/white"
+                    android:layout_marginRight="10dp"
+                    android:visibility="gone"
                     />
             </RelativeLayout>
         </Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/single_cart_all_checkbox"
+        android:layout_gravity="end"
+        android:visibility="gone"
+        />
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -79,7 +114,8 @@
         android:background="@drawable/solid_design"
         android:textColor="@android:color/white"
         android:textAppearance="?android:textAppearanceMedium"
-        android:textStyle="bold"
+        android:textStyle="italic"
         android:id="@+id/cart_button_to_checkout"
+
         />
 </LinearLayout>
